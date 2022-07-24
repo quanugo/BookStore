@@ -1,0 +1,74 @@
+﻿@using BookStore.Models;
+@model List<CartItem>;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Cart</title>
+    <style>
+        body{
+            margin-left:20%;
+            margin-top:10%;
+            background-image:url("/Content/User/images/background_cart.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body>
+    <a href="/home">Continue Shopping</a>
+    <h2>Cart</h2>
+
+    @if (Model.Count > 0)
+    {
+        double total = 0;
+        int stt = 1;
+        <form action="/submit" method="get">
+            <table>
+                <tr>
+                    <th>Image</th>
+                    <th>Book Name</th>
+                    <th>Unit Price</th>
+                    <th>Quantity</th>
+                    <th>Total</th>
+                    <th></th>
+                </tr>
+                @foreach (var cartitem in Model)
+                {
+                    var thanhtien = cartitem.Quantity * cartitem.Book.Price;
+                    total += thanhtien;
+
+                    <tr>
+                        <td><img src="/Content/User/@cartitem.Book.ImagePath" alt="image" /></td>
+                        <td>@cartitem.Book.BookName</td>
+                        <td>@(cartitem.Book.Price.ToString("n0"))</td>
+                        <td><input type="text" name="quantity" value="@cartitem.Quantity.ToString("n0")" /></td>
+                        <td>@(thanhtien.ToString("n0"))</td>
+                        <td>
+                            <a href="/updatecart/@cartitem.Book.BookId/2">Update</a>
+                            <a href="/removecart/@cartitem.Book.BookId">Delete</a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="4">Total</td>
+                    <td>@(total.ToString("n0"))</td>
+                    <td></td>
+                </tr>
+            </table>
+
+            <input type="submit" value="Submit Order" />
+        </form>
+    }
+    else
+    {
+        <p>Giỏ hàng trống</p>
+    }
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="/Content/User/css/templatemo_style.css" rel="stylesheet" type="text/css" />
+    @RenderSection("head", false)
+    <style>
+        #templatemo_container {
+            background: url(/Content/User/images/templatemo_bg.jpg) repeat-y;
+        }
+
+        #templatemo_menu {
+            background: url(/Content/User/images/templatemo_menu_bg.jpg) no-repeat;
+        }
+
+        #templatemo_header {
+            background: url(/Content/User/images/templatemo_header_bg.jpg) no-repeat;
+        }
+
+        #templatemo_content_right h1{
+            background: url(/Content/User/images/templatemo_h1_bg.jpg);
+        }
+    </style>
+</head>
+<body>
+    <div id="templatemo_container">
+        <div id="templatemo_menu">
+            <form action="/search" method="get">
+                <ul>
+                    <li><a href="/home" class="current">Home</a></li>
+                    <li><a href="/cart">Cart</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li>
+                        <input type="text" name="search" placeholder="Find something here" />
+                        <input type="submit" value="Search" />
+                    </li>
+                    <li><a href="/login" style="margin-left: 10%">Login</a></li>
+                    <li><a href="/signup">SignUp</a></li>
+                </ul>
+            </form>
+        </div> <!-- end of menu -->
+
+        <div id="templatemo_header">
+
+            <div id="templatemo_special_offers">
+                <p>
+                    <span>25%</span> discounts for
+                    purchase over $80
+                </p>
+                <a href="#" style="margin-left: 50px;">Read more...</a>
+            </div>
+
+
+            <div id="templatemo_new_books">
+                <ul>
+                    <li>Năm Thương Tháng Nhớ </li>
+                    <li>Tôi Quyết Định Sống Cho Chính Tôi</li>
+                    <li>Mắt Biếc</li>
+                </ul>
+                <a href="#" style="margin-left: 50px;">Read more...</a>
+            </div>
+        </div> <!-- end of header -->
+
+        <div id="templatemo_content">
+
+            <div id="templatemo_content_left">
+                <div class="templatemo_content_left_section">
+                    @RenderSection("CategorySection")
+                </div>
+                                
+            </div> <!-- end of content left -->
+
+            <div id="templatemo_content_right">
+                @RenderBody()
+            </div> <!-- end of content right -->
+
+            <div class="cleaner_with_height">&nbsp;</div>
+        </div> <!-- end of content -->
+        <div id="templatemo_footer">
+
+            <a href="/home">Home</a> | <a href="#">FAQs</a> | <a href="#">Contact Us</a><br />
+            Copyright © 2022 <a href="/home"><strong>Book Store</strong></a>
+        </div>
+        <!-- end of footer -->
+    </div>
+</body>
+</html>
